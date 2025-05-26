@@ -17,10 +17,19 @@ public class TwinkleToes extends AirAbility implements AddonAbility, PassiveAbil
     public void progress() {}
 
     @Override
+    public void remove() {}
+
+    @Override
     public boolean isSneakAbility() { return false; }
 
     @Override
     public boolean isHarmlessAbility() { return true; }
+
+    @Override
+    public boolean isHiddenAbility() { return false; }
+
+    @Override
+    public boolean isEnabled() { return true; }
 
     @Override
     public long getCooldown() { return 0; }
@@ -63,11 +72,6 @@ public class TwinkleToes extends AirAbility implements AddonAbility, PassiveAbil
 
     @Override
     public boolean isProgressable() {
-        return false;
-    }
-
-    @Override
-    public boolean isHiddenAbility() {
         return false;
     }
 }
