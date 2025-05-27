@@ -17,15 +17,18 @@ public class HitBox {
     private ArmorStand armorStand;
 
     public void createHitbox(Location location) {
+        if (location.getWorld() == null) throw new NullPointerException("World cannot be null! Location: " + location);
+
         this.armorStand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
         this.armorStandLocation = location.clone();
         this.entityId = this.armorStand.getEntityId();
 
+        this.armorStand.setHealth(20);
         this.armorStand.setCollidable(true);
         this.armorStand.setRemoveWhenFarAway(false);
         this.armorStand.setPersistent(false);
         this.armorStand.setCanPickupItems(false);
-        this.armorStand.setInvulnerable(false);
+        this.armorStand.setInvulnerable(true);
         this.armorStand.setVisible(false);
         this.armorStand.setGravity(false);
         this.armorStand.setMarker(false);

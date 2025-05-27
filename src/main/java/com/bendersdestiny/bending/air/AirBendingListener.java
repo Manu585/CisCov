@@ -1,15 +1,13 @@
 package com.bendersdestiny.bending.air;
 
-import com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.SpiritualProjection;
-import com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.sub.SpiritMode;
-import com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.sub.SpiritReturn;
-import com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.sub.SpiritualMode;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualProjection;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.subabilities.SpiritMode;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.subabilities.SpiritReturn;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.subabilities.SpiritualMode;
 import com.bendersdestiny.bending.air.passives.TwinkleToes;
-import com.bendersdestiny.util.nms.FakePlayer;
 import com.projectkorra.projectkorra.BendingPlayer;
 import com.projectkorra.projectkorra.Element;
 import com.projectkorra.projectkorra.ability.CoreAbility;
-import com.projectkorra.projectkorra.event.AbilityDamageEntityEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,59 +37,22 @@ public class AirBendingListener implements Listener {
 
     // -- ABILITIES --
 
-    @EventHandler
-    public void onAbilityDamage(AbilityDamageEntityEvent event) {
-        int hitEntity = event.getEntity().getEntityId();
+    // -- SpiritualProjection --
 
-        FakePlayer fake = FakePlayer.getByEntityId(hitEntity);
-        if (fake == null) return;
-
-
-        fake.damage(event.getDamage());
-
-        event.getAbility().getPlayer().sendMessage("Damage: " + event.getDamage());
-
-        if (fake.getHealth() <= 0) {
-            fake.removePlayer();
-        }
-    }
-
-    // SpiritualProjection
-    @EventHandler
-    public void onLeftClickWithSpiritualMode(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) {
-            return;
-        }
-
-        Player player = event.getPlayer();
-        BendingPlayer bendingPlayer = BendingPlayer.getBendingPlayer(player);
-
-        if (bendingPlayer == null) return;
-
-        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) return;
-
-        SpiritualProjection spiritualProjection = CoreAbility.getAbility(player, SpiritualProjection.class);
-        if (spiritualProjection == null || !spiritualProjection.isMultiAbilityBound()) return;
-
-        int itemSlot = player.getInventory().getHeldItemSlot();
-
-        if (itemSlot == 1) {
-            player.sendMessage("Test");
-            new SpiritualMode(player);
-        }
-    }
-
+    /**
+     * Handle all subability slot switches and instantiate subclasses upon hovering the new slot
+     */
     @EventHandler
     public void onHotbarSwitch(PlayerItemHeldEvent event) {
         Player player = event.getPlayer();
 
         SpiritualProjection spiritualProjection = CoreAbility.getAbility(player, SpiritualProjection.class);
-
         if (spiritualProjection == null || !spiritualProjection.isMultiAbilityBound()) {
             return;
         }
 
-        if (spiritualProjection.isTranscending()) {
+        // Cancel if ability is supposed to end
+        if (spiritualProjection.abilityEnded()) {
             event.setCancelled(true);
         }
 
@@ -112,6 +73,30 @@ public class AirBendingListener implements Listener {
         }
     }
 
+    /**
+     * Set Player into {@link SpiritualMode} when left-clicking whilest hovering correct slot
+     */
+    @EventHandler
+    public void onLeftClickWithSpiritualMode(PlayerInteractEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) { // Prevent duplicate call
+            return;
+        }
+
+        Player player = event.getPlayer();
+        BendingPlayer bendingPlayer = BendingPlayer.getBendingPlayer(player);
+
+        if (bendingPlayer == null) return;
+        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) return;
+
+        SpiritualProjection spiritualProjection = CoreAbility.getAbility(player, SpiritualProjection.class);
+        if (spiritualProjection == null || !spiritualProjection.isMultiAbilityBound()) return;
+
+        // Set into SpiritualMode if the correct slot hovered and left-clicked
+        if (player.getInventory().getHeldItemSlot() == 1) {
+            new SpiritualMode(player);
+        }
+    }
+
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
@@ -126,6 +111,10 @@ public class AirBendingListener implements Listener {
     // -- PASSIVES --
 
     // TWINKLE TOES
+
+    /**
+     * Make Sculk sensors not receive a sound signal if the player has element air and can bend TwinkleToes
+     */
     @EventHandler
     public void onBlockReceiveGameEvent(BlockReceiveGameEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;

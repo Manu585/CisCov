@@ -1,9 +1,11 @@
 package com.bendersdestiny;
 
 import com.bendersdestiny.bending.air.AirBendingListener;
+import com.bendersdestiny.bending.earth.EarthBendingListener;
 import com.bendersdestiny.bending.fire.FireBendingListener;
+import com.bendersdestiny.bending.water.WaterBendingListener;
 import com.bendersdestiny.configuration.ConfigManager;
-import com.bendersdestiny.listener.hitbox.FakePlayerDamageListener;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.listeners.FakePlayerDamageListener;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.projectkorra.projectkorra.ability.CoreAbility;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
@@ -32,7 +34,9 @@ public class CisCov extends JavaPlugin {
 
         registerListeners(
                 new AirBendingListener(),
+                new EarthBendingListener(),
                 new FireBendingListener(),
+                new WaterBendingListener(),
                 new FakePlayerDamageListener()
         );
     }

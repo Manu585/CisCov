@@ -1,4 +1,4 @@
-package com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.sub;
+package com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.subabilities;
 
 import com.bendersdestiny.CisCov;
 import com.bendersdestiny.util.nms.GlowManager;

@@ -10,6 +10,9 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Helps to Apply a glowing effect via packets to a given Player with any Team color
+ */
 public class GlowManager {
     public static void setGlowing(Player player, NamedTextColor color) {
         String teamName = "glow_" + player.getUniqueId().toString().substring(0, 8);

@@ -1,7 +1,7 @@
-package com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.sub;
+package com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.subabilities;
 
 import com.bendersdestiny.CisCov;
-import com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.SpiritualProjection;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualProjection;
 import com.bendersdestiny.util.nms.FakePlayer;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.CoreAbility;
@@ -12,11 +12,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class SpiritReturn extends SpiritualAbility implements AddonAbility {
-    private static final double SPEED = 0.6;
+    private static final double INITIAL_SPEED = 0.1;
+    private static final double SPEED_INCREMENT = 0.05;
+    private static final int    SPEED_INCREMENT_INTERVAL = 5; // Increase speed every 5 ticks
     private static final double THRESHOLD = 1.0;
 
     private final SpiritualProjection projection;
     private Location origin;
+
+    private double speed = INITIAL_SPEED;
+    private int tickCounter = 0;
 
     public SpiritReturn(Player player) {
         super(player);
@@ -42,12 +47,18 @@ public class SpiritReturn extends SpiritualAbility implements AddonAbility {
 
         Location current = player.getLocation();
         Vector toOrigin = origin.toVector().subtract(current.toVector()).normalize();
-        player.setVelocity(toOrigin.multiply(SPEED));
+        player.setVelocity(toOrigin.multiply(speed));
+
+        tickCounter++;
+        if (tickCounter % SPEED_INCREMENT_INTERVAL == 0) {
+            speed += SPEED_INCREMENT;
+        }
 
         if (current.distance(origin) <= THRESHOLD) {
             remove();
         }
     }
+
 
     @Override
     public void remove() {

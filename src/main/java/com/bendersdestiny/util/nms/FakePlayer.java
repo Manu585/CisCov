@@ -1,6 +1,6 @@
 package com.bendersdestiny.util.nms;
 
-import com.bendersdestiny.bending.air.abilities.spiritual.multiabilities.spiritualprojection.SpiritualProjection;
+import com.bendersdestiny.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualProjection;
 import com.bendersdestiny.util.hitbox.HitBox;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class FakePlayer {
     private static final Map<Integer, FakePlayer> FAKE_PLAYER_BY_ENTITY_ID = new ConcurrentHashMap<>();
     private static final Map<Integer, FakePlayer> FAKE_PLAYER_BY_HITBOX_ID = new ConcurrentHashMap<>();
-    private static final Map<UUID, FakePlayer>    FAKE_PLAYER_BY_UUID      = new ConcurrentHashMap<>();
+    private static final Map   <UUID, FakePlayer> FAKE_PLAYER_BY_UUID      = new ConcurrentHashMap<>();
 
     private final int entityId;
     private final Player player;
@@ -117,6 +117,11 @@ public class FakePlayer {
         hitBox.removeHitbox();
     }
 
+    /**
+     * Damage FakePlayer and if damage "kills" it, remove spiritual projection and kill real player
+     *
+     * @param amount Damage amount
+     */
     public void damage(double amount) {
         this.health = Math.max(0, this.health - amount);
 
