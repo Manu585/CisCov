@@ -3,6 +3,7 @@ name: ${plugin.name}
 version: ${plugin.version}
 description: ${plugin.description}
 author: ${plugin.author}
+website: https://github.com/Manu585/CisCov
 api-version: 1.20
 depend:
   - ProjectKorra

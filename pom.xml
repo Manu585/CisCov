@@ -6,11 +6,11 @@
 
     <groupId>com.manu</groupId>
     <artifactId>CisCov</artifactId>
-    <version>Alpha-0.0.1</version>
+    <version>Alpha-0.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
-        <plugin.mainClass>com.bendersdestiny.CisCov</plugin.mainClass>
+        <plugin.mainClass>com.bendersdestiny.ciscov.CisCov</plugin.mainClass>
         <plugin.version>${project.version}</plugin.version>
         <plugin.name>${project.artifactId}</plugin.name>
         <plugin.description>ProjectKorra Addon that adds various bending abilities and mechanics</plugin.description>
@@ -24,10 +24,10 @@
 
     <repositories>
         <repository>
-            <name>SpigotMC</name>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
+
         <repository>
             <id>codemc-releases</id>
             <url>https://repo.codemc.io/repository/maven-releases/</url>
@@ -36,15 +36,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
             <version>1.20.6-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.projectkorra</groupId>
             <artifactId>projectkorra</artifactId>
             <version>1.12.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.github.retrooper</groupId>
             <artifactId>packetevents-spigot</artifactId>
@@ -74,6 +77,15 @@
         </resources>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
