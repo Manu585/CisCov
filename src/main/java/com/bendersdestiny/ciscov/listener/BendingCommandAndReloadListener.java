@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class BendingCommandAndReloadListener implements Listener {
-    String[] cmdaliases = {"/bending", "/bend", "/b", "/pk", "/projectkorra", "/korra", "/mtla", "/tla"};
+    String[] commandAliases = {"/bending", "/bend", "/b", "/pk", "/projectkorra", "/korra", "/mtla", "/tla"};
 
     public static String[] developers = {"7d283a87-378d-4384-b748-3480dc7d3814"};
 
@@ -42,7 +42,7 @@ public class BendingCommandAndReloadListener implements Listener {
     public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
         String cmd = event.getMessage().toLowerCase();
         String[] args = cmd.split("\\s+");
-        if (Arrays.asList(cmdaliases).contains(args[0]) && args.length >= 2) {
+        if (Arrays.asList(commandAliases).contains(args[0]) && args.length >= 2) {
             PKCommandEvent new_event = new PKCommandEvent(event.getPlayer(), args, null);
             for (PKCommand command : PKCommand.instances.values()) {
                 if (Arrays.asList(command.getAliases()).contains(args[1].toLowerCase())) {

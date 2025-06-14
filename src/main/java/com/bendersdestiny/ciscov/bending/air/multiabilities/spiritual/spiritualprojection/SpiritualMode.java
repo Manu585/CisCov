@@ -1,23 +1,19 @@
-package com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.subabilities;
+package com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection;
 
 import com.bendersdestiny.ciscov.CisCov;
 import com.bendersdestiny.ciscov.util.nms.GlowManager;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.SpiritualAbility;
-import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public class SpiritMode extends SpiritualAbility implements AddonAbility {
-    public SpiritMode(Player player) {
+public class SpiritualMode extends SpiritualAbility implements AddonAbility {
+    public SpiritualMode(Player player) {
         super(player);
 
-        player.setAllowFlight(true);
-        player.setFlying(true);
-        player.setInvisible(true);
-        player.setInvulnerable(true);
-
-        GlowManager.setGlowing(player, NamedTextColor.AQUA);
+        player.setGameMode(GameMode.SPECTATOR);
+        GlowManager.removeGlowing(player);
     }
 
     @Override
@@ -32,7 +28,7 @@ public class SpiritMode extends SpiritualAbility implements AddonAbility {
 
     @Override
     public boolean isHarmlessAbility() {
-        return false;
+        return true;
     }
 
     @Override
@@ -42,7 +38,7 @@ public class SpiritMode extends SpiritualAbility implements AddonAbility {
 
     @Override
     public String getName() {
-        return "SpiritMode";
+        return "SpiritualMode";
     }
 
     @Override
@@ -62,12 +58,12 @@ public class SpiritMode extends SpiritualAbility implements AddonAbility {
 
     @Override
     public String getAuthor() {
-        return CisCov.getInstance().getDescription().getAuthors().getFirst();
+        return CisCov.getInstance().getPluginMeta().getAuthors().getFirst();
     }
 
     @Override
     public String getVersion() {
-        return CisCov.getInstance().getDescription().getVersion();
+        return CisCov.getInstance().getPluginMeta().getVersion();
     }
 
     @Override

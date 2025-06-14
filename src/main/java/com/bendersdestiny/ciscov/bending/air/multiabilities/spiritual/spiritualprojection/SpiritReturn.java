@@ -1,7 +1,7 @@
-package com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.subabilities;
+package com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection;
 
 import com.bendersdestiny.ciscov.CisCov;
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualProjection;
+import com.bendersdestiny.ciscov.bending.air.abilities.spiritual.SpiritualProjection;
 import com.bendersdestiny.ciscov.configuration.ConfigManager;
 import com.bendersdestiny.ciscov.util.nms.FakePlayer;
 import com.projectkorra.projectkorra.ability.AddonAbility;
@@ -105,12 +105,12 @@ public class SpiritReturn extends SpiritualAbility implements AddonAbility {
 
     @Override
     public String getAuthor() {
-        return CisCov.getInstance().getDescription().getAuthors().getFirst();
+        return CisCov.getInstance().getPluginMeta().getAuthors().getFirst();
     }
 
     @Override
     public String getVersion() {
-        return CisCov.getInstance().getDescription().getVersion();
+        return CisCov.getInstance().getPluginMeta().getVersion();
     }
 
     @Override

@@ -173,12 +173,12 @@ public class InnerFlame extends FireAbility implements AddonAbility, PassiveAbil
 
     @Override
     public String getAuthor() {
-        return CisCov.getInstance().getDescription().getAuthors().getFirst();
+        return CisCov.getInstance().getPluginMeta().getAuthors().getFirst();
     }
 
     @Override
     public String getVersion() {
-        return CisCov.getInstance().getDescription().getVersion();
+        return CisCov.getInstance().getPluginMeta().getVersion();
     }
 
     @Override

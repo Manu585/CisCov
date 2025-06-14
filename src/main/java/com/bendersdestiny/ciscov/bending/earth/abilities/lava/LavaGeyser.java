@@ -133,6 +133,7 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
 
         for (Geyser geyser : eruptableGeysers) {
             geyser.startEruption();
+            break;
         }
     }
 
@@ -195,12 +196,12 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
 
     @Override
     public String getAuthor() {
-        return CisCov.getInstance().getDescription().getAuthors().getFirst();
+        return CisCov.getInstance().getPluginMeta().getAuthors().getFirst();
     }
 
     @Override
     public String getVersion() {
-        return CisCov.getInstance().getDescription().getVersion();
+        return CisCov.getInstance().getPluginMeta().getVersion();
     }
 
     @Override

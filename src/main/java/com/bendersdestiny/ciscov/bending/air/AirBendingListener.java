@@ -1,9 +1,9 @@
 package com.bendersdestiny.ciscov.bending.air;
 
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualProjection;
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.subabilities.SpiritMode;
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.subabilities.SpiritReturn;
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.subabilities.SpiritualMode;
+import com.bendersdestiny.ciscov.bending.air.abilities.spiritual.SpiritualProjection;
+import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.SpiritMode;
+import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.SpiritReturn;
+import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualMode;
 import com.bendersdestiny.ciscov.bending.air.passives.TwinkleToes;
 import com.projectkorra.projectkorra.BendingPlayer;
 import com.projectkorra.projectkorra.Element;

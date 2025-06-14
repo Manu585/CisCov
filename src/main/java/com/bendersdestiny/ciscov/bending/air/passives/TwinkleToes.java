@@ -41,7 +41,7 @@ public class TwinkleToes extends AirAbility implements AddonAbility, PassiveAbil
 
     @Override
     public String getDescription() {
-        return "* CisCov Addon* \nAir benders have developed the ability to cushion their steps in order to prevent sculk sensors from being activated";
+        return "* CisCov Addon *\nAir benders have developed the ability to cushion their steps in order to prevent sculk sensors from being activated";
     }
 
     @Override
@@ -57,12 +57,12 @@ public class TwinkleToes extends AirAbility implements AddonAbility, PassiveAbil
 
     @Override
     public String getAuthor() {
-        return CisCov.getInstance().getDescription().getAuthors().getFirst();
+        return CisCov.getInstance().getPluginMeta().getAuthors().getFirst();
     }
 
     @Override
     public String getVersion() {
-        return CisCov.getInstance().getDescription().getVersion();
+        return CisCov.getInstance().getPluginMeta().getVersion();
     }
 
     @Override

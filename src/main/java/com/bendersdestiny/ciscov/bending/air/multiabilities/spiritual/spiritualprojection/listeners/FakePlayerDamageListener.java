@@ -1,6 +1,6 @@
 package com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.listeners;
 
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.SpiritualProjection;
+import com.bendersdestiny.ciscov.bending.air.abilities.spiritual.SpiritualProjection;
 import com.bendersdestiny.ciscov.util.nms.FakePlayer;
 import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.event.AbilityDamageEntityEvent;
