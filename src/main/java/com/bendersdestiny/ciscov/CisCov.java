@@ -1,12 +1,12 @@
 package com.bendersdestiny.ciscov;
 
-import com.bendersdestiny.ciscov.bending.air.AirBendingListener;
-import com.bendersdestiny.ciscov.bending.air.AirBendingNMSListener;
-import com.bendersdestiny.ciscov.bending.air.multiabilities.spiritual.spiritualprojection.listeners.FakePlayerDamageListener;
-import com.bendersdestiny.ciscov.bending.avatar.AvatarBendingListener;
-import com.bendersdestiny.ciscov.bending.earth.EarthBendingListener;
-import com.bendersdestiny.ciscov.bending.fire.FireBendingListener;
-import com.bendersdestiny.ciscov.bending.water.WaterBendingListener;
+import com.bendersdestiny.ciscov.abilities.air.AirBendingListener;
+import com.bendersdestiny.ciscov.abilities.air.AirBendingNMSListener;
+import com.bendersdestiny.ciscov.abilities.air.multiabilities.spiritual.spiritualprojection.listeners.FakePlayerDamageListener;
+import com.bendersdestiny.ciscov.abilities.avatar.AvatarBendingListener;
+import com.bendersdestiny.ciscov.abilities.earth.EarthBendingListener;
+import com.bendersdestiny.ciscov.abilities.fire.FireBendingListener;
+import com.bendersdestiny.ciscov.abilities.water.WaterBendingListener;
 import com.bendersdestiny.ciscov.configuration.ConfigManager;
 import com.bendersdestiny.ciscov.listener.BendingCommandAndReloadListener;
 import com.github.retrooper.packetevents.PacketEvents;

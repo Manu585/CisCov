@@ -1,6 +1,6 @@
 package com.bendersdestiny.ciscov.util.nms;
 
-import com.bendersdestiny.ciscov.bending.air.abilities.spiritual.SpiritualProjection;
+import com.bendersdestiny.ciscov.abilities.air.abilities.spiritual.SpiritualProjection;
 import com.bendersdestiny.ciscov.util.hitbox.HitBox;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
