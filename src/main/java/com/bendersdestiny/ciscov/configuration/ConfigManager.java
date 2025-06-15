@@ -38,6 +38,7 @@ public class ConfigManager {
 
         // EARTH
 
+        // LAVA
         // -- LavaGeyser --
         config.addDefault("Earth.Lava.LavaGeyser.Cooldown", 5000);
         config.addDefault("Earth.Lava.LavaGeyser.ChargeTime", 3000);
@@ -46,6 +47,13 @@ public class ConfigManager {
         config.addDefault("Earth.Lava.LavaGeyser.Height", 4);
         config.addDefault("Earth.Lava.LavaGeyser.Range", 8);
         config.addDefault("Earth.Lava.LavaGeyser.MaxSources", 5);
+
+        // SAND
+        // -- SandSpout --
+        config.addDefault("Earth.Sand.SandSpout.Cooldown", 5000);
+        config.addDefault("Earth.Sand.SandSpout.Duration", 4000);
+        config.addDefault("Earth.Sand.SandSpout.MaxHeight", 10);
+        config.addDefault("Earth.Sand.SandSpout.Speed", 4);
 
         defaultConfig.save();
     }

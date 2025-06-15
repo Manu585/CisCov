@@ -21,6 +21,7 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
         SELECTING_SOURCES,
     }
 
+    @Attribute(Attribute.COOLDOWN) private long cooldown;
     @Attribute(Attribute.DURATION) private long eruptDuration;
     @Attribute(Attribute.RADIUS) private int eruptRadius;
     @Attribute(Attribute.HEIGHT) private int eruptHeight;
@@ -42,7 +43,8 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
 
         if (!bPlayer.canBend(this)) return;
 
-        maxSourceSelections = ConfigManager.getDefaultConfig().getInt("Earth.Lava.LavaGeyser.MaxSources");;
+        cooldown = ConfigManager.getDefaultConfig().getLong("Earth.Lava.LavaGeyser.Cooldown");
+        maxSourceSelections = ConfigManager.getDefaultConfig().getInt("Earth.Lava.LavaGeyser.MaxSources");
 
         chargeTime    = (long) ConfigManager.getDefaultConfig().getDouble("Earth.Lava.LavaGeyser.ChargeTime");
         eruptDuration = (long) ConfigManager.getDefaultConfig().getDouble("Earth.Lava.LavaGeyser.Duration");
@@ -53,6 +55,7 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
 
         sourceBlocks   = new HashSet<>();
         activeGeysers  = new ArrayList<>();
+
         state = State.SELECTING_SOURCES;
 
         totalGeysersCreated = 0;
@@ -90,8 +93,8 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
         if (block == null) return;
 
         if (!block.equals(lastHoveredSource) && canSelectSource(block)) {
-            Geyser newGeyser = new Geyser(player, block.getLocation(), eruptRadius, eruptHeight, eruptDuration, chargeTime, this);
-            activeGeysers.add(newGeyser);
+            Geyser geyser = new Geyser(player, block.getLocation(), eruptRadius, eruptHeight, eruptDuration, chargeTime, this);
+            activeGeysers.add(geyser);
             sourceBlocks.add(block);
             lastHoveredSource = block;
             totalGeysersCreated++;
@@ -159,7 +162,7 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
 
     @Override
     public long getCooldown() {
-        return (long) ConfigManager.getDefaultConfig().getDouble("Earth.Lava.LavaGeyser.Cooldown");
+        return cooldown;
     }
 
     @Override

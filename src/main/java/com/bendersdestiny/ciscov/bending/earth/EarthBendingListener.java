@@ -1,6 +1,7 @@
 package com.bendersdestiny.ciscov.bending.earth;
 
 import com.bendersdestiny.ciscov.bending.earth.abilities.lava.LavaGeyser;
+import com.bendersdestiny.ciscov.bending.earth.abilities.sand.SandSpout;
 import com.projectkorra.projectkorra.BendingPlayer;
 import com.projectkorra.projectkorra.ability.CoreAbility;
 import org.bukkit.entity.Player;
@@ -31,6 +32,10 @@ public class EarthBendingListener implements Listener {
             if (CoreAbility.getAbility(player, LavaGeyser.class) != null) {
                 LavaGeyser ability = CoreAbility.getAbility(player, LavaGeyser.class);
                 ability.handleLeftClick();
+            }
+        } else if (bPlayer.getBoundAbility() == CoreAbility.getAbility(SandSpout.class)) {
+            if (CoreAbility.getAbility(player, SandSpout.class) == null) {
+                new SandSpout(player);
             }
         }
     }
