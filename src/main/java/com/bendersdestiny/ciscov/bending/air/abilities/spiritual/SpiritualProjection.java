@@ -55,6 +55,7 @@ public class SpiritualProjection extends SpiritualAbility implements AddonAbilit
         }
 
         if (!this.bPlayer.canBend(this)) {
+            remove();
             return;
         }
 
@@ -66,7 +67,10 @@ public class SpiritualProjection extends SpiritualAbility implements AddonAbilit
             return;
         }
 
-        if (!this.charged && !this.player.isSneaking()) return;
+        if (!this.charged && !this.player.isSneaking()) {
+            chargeStartTime = System.currentTimeMillis();
+            return;
+        }
 
         // Charge ability
         if (!this.charged) {
@@ -122,7 +126,10 @@ public class SpiritualProjection extends SpiritualAbility implements AddonAbilit
             MultiAbilityManager.unbindMultiAbility(this.player);
         }
 
-        this.fakePlayer.removePlayer();
+        if (this.fakePlayer != null) {
+            this.fakePlayer.removePlayer();
+        }
+
         this.player.setGameMode(GameMode.SURVIVAL);
         this.bPlayer.addCooldown(this);
     }

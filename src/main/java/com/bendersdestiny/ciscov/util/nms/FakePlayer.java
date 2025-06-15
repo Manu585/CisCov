@@ -186,7 +186,7 @@ public class FakePlayer {
         return health;
     }
 
-    private static class FakeArmorStand {
+    public static class FakeArmorStand {
         private static final Map<Integer, FakeArmorStand> FAKE_ARMOR_STANDS_BY_ENTITY_ID = new ConcurrentHashMap<>();
 
         private final int entityId;

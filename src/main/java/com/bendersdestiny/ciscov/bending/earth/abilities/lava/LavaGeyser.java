@@ -123,17 +123,11 @@ public class LavaGeyser extends LavaAbility implements AddonAbility {
     }
 
     public void handleLeftClick() {
-        List<Geyser> eruptableGeysers = new ArrayList<>();
-
         for (Geyser geyser : activeGeysers) {
-            if (geyser.isEruptable()) {
-                eruptableGeysers.add(geyser);
+            if (geyser.isEruptable() && geyser.getState() == Geyser.State.PREPARING_SOURCE) {
+                geyser.startEruption();
+                break;
             }
-        }
-
-        for (Geyser geyser : eruptableGeysers) {
-            geyser.startEruption();
-            break;
         }
     }
 

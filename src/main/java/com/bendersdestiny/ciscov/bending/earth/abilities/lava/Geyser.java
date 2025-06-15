@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 import java.util.*;
 
 public class Geyser extends LavaAbility {
-    private enum State {
+    public enum State {
         PREPARING_SOURCE,
         ERUPTING,
         REMOVING
@@ -446,6 +446,10 @@ public class Geyser extends LavaAbility {
     @Override
     public boolean isHiddenAbility() {
         return true;
+    }
+
+    public State getState() {
+        return this.state;
     }
 
     public Location getSourceCenter() {
